@@ -19,4 +19,10 @@ public class Post implements IPost {
     public void deleteComment(Comment comment) {
 
     }
+
+    public Post(User user, String content) {
+        this.user = user;
+        this.content = content;
+    }
+
 }
