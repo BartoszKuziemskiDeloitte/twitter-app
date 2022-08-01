@@ -7,7 +7,11 @@ import java.util.List;
 
 @Entity
 public class Post implements IPost {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @ManyToOne
     private User user;
     private String content;
 

@@ -1,9 +1,30 @@
 package com.deloitte.twitterapp.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+
+    @OneToMany
+    @JoinColumn(name = "post_id")
     private List<Post> posts;
+
+    public User(String name) {
+        this.name = name;
+    }
+
+    public User() {}
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
 }
