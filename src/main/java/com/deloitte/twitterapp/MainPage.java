@@ -7,7 +7,6 @@ import java.util.List;
 
 public class MainPage implements IMainPage {
     private List<Post> posts;
-
     @Override
     public void addPost(Post post) {
 
