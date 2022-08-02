@@ -1,5 +1,7 @@
 package com.deloitte.twitterapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,33 +12,45 @@ public class User {
     private Long id;
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "post_id")
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
-    public User(String name) {
-        this.name = name;
-    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
 
     public User() {}
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<Post> getPosts() {
         return posts;
+    }
+
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
