@@ -1,6 +1,7 @@
 package com.deloitte.twitterapp.controller;
 
 import com.deloitte.twitterapp.model.User;
+import com.deloitte.twitterapp.service.IUserService;
 import com.deloitte.twitterapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,11 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private final UserService userService;
+
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private IUserService userService;
 
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
@@ -24,8 +23,14 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<User> addUser (@RequestBody final User user){
-        return new ResponseEntity<User>(userService.addUser(user), HttpStatus.OK);
+    @PostMapping(value = "")
+    public User addUser(@RequestBody User user) {
+        return userService.addUser(user);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<User> getUser(@PathVariable final Long id) {
+        User user = userService.getUser(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

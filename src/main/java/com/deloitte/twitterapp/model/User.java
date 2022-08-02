@@ -11,7 +11,7 @@ public class User {
     private String name;
 
     @OneToMany
-    @JoinColumn(name = "post_id")
+    //@JoinColumn(name = "user_id")
     private List<Post> posts;
 
     public User(String name) {
@@ -26,5 +26,17 @@ public class User {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Post> getPosts() {
+        return posts;
     }
 }

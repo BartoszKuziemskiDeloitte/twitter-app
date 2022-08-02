@@ -14,6 +14,7 @@ import java.util.List;
 public class PostController {
 
     private PostService postService;
+
     @Autowired
     public PostController(PostService postService) {
         this.postService = postService;
@@ -26,7 +27,7 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<Post> addPost (@RequestBody final Post post) {
+    public ResponseEntity<Post> addPost(@RequestBody final Post post) {
         return new ResponseEntity<>(postService.addPost(post), HttpStatus.OK);
     }
 

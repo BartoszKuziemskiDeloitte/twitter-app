@@ -9,19 +9,27 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService implements IUserService {
     private final UserRepository userRepository;
+
     @Autowired
     public UserService(UserRepository userRepository, PostRepository postRepository) {
-       this.userRepository = userRepository;
+        this.userRepository = userRepository;
     }
+
     public User addUser(User user) {
         return userRepository.save(user);
     }
+
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    public User getUser(Long id) {
+        return userRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 }
