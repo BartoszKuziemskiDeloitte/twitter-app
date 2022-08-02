@@ -13,8 +13,12 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {
@@ -22,12 +26,12 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PostMapping(value = "")
-    public User addUser(@RequestBody User user) {
-        return userService.addUser(user);
+    @PostMapping
+    public ResponseEntity<User> addUser(@RequestBody final User user) {
+        return new ResponseEntity<>(userService.addUser(user), HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable final Long id) {
         User user = userService.getUser(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
