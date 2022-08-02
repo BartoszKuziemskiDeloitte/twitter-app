@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/posts")
 public class PostController {
 
-    private PostService postService;
+    private final PostService postService;
 
     @Autowired
     public PostController(PostService postService) {
@@ -26,9 +26,9 @@ public class PostController {
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Post> addPost(@RequestBody final Post post) {
-        return new ResponseEntity<>(postService.addPost(post), HttpStatus.OK);
-    }
+//    @PostMapping
+//    public ResponseEntity<Post> addPost(@RequestBody final Post post) {
+//        return new ResponseEntity<>(postService.addPost(post), HttpStatus.OK);
+//    }
 
 }
