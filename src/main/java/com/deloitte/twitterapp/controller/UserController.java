@@ -41,11 +41,20 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @PostMapping("/{id}")
-    public ResponseEntity<Post> createPost(@RequestBody final Post post, @PathVariable final Long id) {
-        Post postToAdd = post;
-        User user = userService.getUser(id);
-        postToAdd.setUser(user);
-        return new ResponseEntity<>(postService.addPost(postToAdd), HttpStatus.OK);
-    }
+
+
+
+
+
+    /**
+     * nie usuwać, zapytać gdzie lepiej mieć metodę createPost
+     */
+//    @PostMapping("/{id}")
+//    public ResponseEntity<Post> createPost(@RequestBody final Post post, @PathVariable final Long id) {
+//        Post postToAdd = post;
+//        User user = userService.getUser(id);
+//        postToAdd.setUser(user);
+//        return new ResponseEntity<>(postService.addPost(postToAdd), HttpStatus.OK);
+//    }
+
 }
