@@ -10,8 +10,7 @@ public class User {
     private Long id;
     private String name;
 
-    @OneToMany
-    //@JoinColumn(name = "user_id")
+    @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
     public User(String name) {
