@@ -1,4 +1,4 @@
-package com.deloitte.twitterapp.service;
+package com.deloitte.twitterapp.service.impl;
 
 import com.deloitte.twitterapp.model.Comment;
 import com.deloitte.twitterapp.repository.CommentRepository;

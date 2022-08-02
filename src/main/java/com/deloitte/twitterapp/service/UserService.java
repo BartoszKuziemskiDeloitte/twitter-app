@@ -1,35 +1,16 @@
 package com.deloitte.twitterapp.service;
 
 import com.deloitte.twitterapp.model.User;
-import com.deloitte.twitterapp.repository.PostRepository;
-import com.deloitte.twitterapp.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class UserService implements IUserService {
-    private final UserRepository userRepository;
+public interface UserService {
 
-    @Autowired
-    public UserService(UserRepository userRepository, PostRepository postRepository) {
-        this.userRepository = userRepository;
-    }
+    User addUser(User user);
 
-    public User addUser(User user) {
-        return userRepository.save(user);
-    }
+    void deleteUser(Long id);
 
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
+    List<User> getUsers();
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
-    }
-
-    public User getUser(Long id) {
-        return userRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-    }
+    User getUser(Long id);
 }

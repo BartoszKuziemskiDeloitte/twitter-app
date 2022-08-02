@@ -1,7 +1,6 @@
 package com.deloitte.twitterapp.controller;
 
 import com.deloitte.twitterapp.model.User;
-import com.deloitte.twitterapp.service.IUserService;
 import com.deloitte.twitterapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     @GetMapping
     public ResponseEntity<List<User>> getUsers() {

@@ -13,6 +13,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
 
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments;
+
     public User(String name) {
         this.name = name;
     }

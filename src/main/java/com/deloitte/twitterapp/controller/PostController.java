@@ -1,7 +1,7 @@
 package com.deloitte.twitterapp.controller;
 
 import com.deloitte.twitterapp.model.Post;
-import com.deloitte.twitterapp.service.PostService;
+import com.deloitte.twitterapp.service.impl.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
