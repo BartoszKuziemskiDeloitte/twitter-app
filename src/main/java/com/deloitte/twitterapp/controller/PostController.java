@@ -17,18 +17,20 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
+    private final UserService userService;
 
     @Autowired
-    public PostController(PostServiceImpl postService) {
+    public PostController(PostServiceImpl postService, UserService userService) {
         this.postService = postService;
+        this.userService = userService;
     }
 
-    @PostMapping("/users/{id}")
-    public ResponseEntity<Post> createPost(@RequestBody final Post post, @PathVariable final Long id) {
-//        Post postToAdd = post;
-//        User user = userService.getUser(userId);
-//        postToAdd.setUser(user);
-        return new ResponseEntity<>(postService.createPost(post, id), HttpStatus.OK);
+    @PostMapping("/users/{userId}")
+    public ResponseEntity<Post> createPost(@RequestBody final Post post, @PathVariable final Long userId) {
+        Post postToAdd = post;
+        User user = userService.getUser(userId);
+        postToAdd.setUser(user);
+        return new ResponseEntity<>(postService.createPost(post), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -51,6 +53,12 @@ public class PostController {
     public ResponseEntity<List<Post>> getPosts() {
         List<Post> posts = postService.getPosts();
         return new ResponseEntity<>(posts, HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}/user/{userId}")
+    public ResponseEntity<Post> addLike(@PathVariable final Long id, @PathVariable final Long userId) {
+        // TODO: 04.08.2022  
+        return null;
     }
 
 

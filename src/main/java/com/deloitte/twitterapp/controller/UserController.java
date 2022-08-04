@@ -1,12 +1,12 @@
 package com.deloitte.twitterapp.controller;
 
 import com.deloitte.twitterapp.model.User;
+import com.deloitte.twitterapp.service.PostService;
 import com.deloitte.twitterapp.service.UserService;
 import com.deloitte.twitterapp.service.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final PostServiceImpl postService;
+    private final PostService postService;
 
     @Autowired
     public UserController(UserService userService, PostServiceImpl postService) {
@@ -41,20 +41,5 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-
-
-
-
-
-    /**
-     * nie usuwać, zapytać gdzie lepiej mieć metodę createPost
-     */
-//    @PostMapping("/{id}")
-//    public ResponseEntity<Post> createPost(@RequestBody final Post post, @PathVariable final Long id) {
-//        Post postToAdd = post;
-//        User user = userService.getUser(id);
-//        postToAdd.setUser(user);
-//        return new ResponseEntity<>(postService.addPost(postToAdd), HttpStatus.OK);
-//    }
 
 }
