@@ -1,12 +1,11 @@
 package com.deloitte.twitterapp.controller;
 
 import com.deloitte.twitterapp.model.User;
+import com.deloitte.twitterapp.service.PostService;
 import com.deloitte.twitterapp.service.UserService;
-import com.deloitte.twitterapp.service.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,10 +15,10 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final PostServiceImpl postService;
+    private final PostService postService;
 
     @Autowired
-    public UserController(UserService userService, PostServiceImpl postService) {
+    public UserController(UserService userService, PostService postService) {
         this.userService = userService;
         this.postService = postService;
     }
