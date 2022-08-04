@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CommentService {
+public class CommentServiceImpl {
     private final CommentRepository commentRepository;
 
     @Autowired
-    public CommentService(CommentRepository commentRepository) {
+    public CommentServiceImpl(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
     }
 
