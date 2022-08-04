@@ -43,7 +43,6 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment createComment(Comment comment) { return comment; }
-
+    public Comment createComment(Comment comment) { return commentRepository.save(comment); }
 
 }

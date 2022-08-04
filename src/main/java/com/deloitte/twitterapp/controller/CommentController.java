@@ -14,17 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO
 @RestController
 @RequestMapping("/comments")
 public class CommentController {
     private final CommentService commentService;
-    private final CommentRepository commentRepository;
     private final PostService postService;
 
     @Autowired
-    public CommentController(CommentService commentService, PostService postService, CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
+    public CommentController(CommentService commentService, PostService postService) {
         this.commentService = commentService;
         this.postService = postService;
     }
@@ -36,7 +33,7 @@ public class CommentController {
     @PostMapping("/id")
     public ResponseEntity<Comment> createComment(@RequestBody final Comment comment, @PathVariable final Long postId) {
         Comment addedComment = comment;
-        Post post = postService.getPost(postId);
+        Post post = postService.getPost(id);
         addedComment.setPost(post);
         return new ResponseEntity<>(commentService.createComment(addedComment), HttpStatus.OK);
     }
