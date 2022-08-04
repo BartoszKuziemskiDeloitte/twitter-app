@@ -1,9 +1,7 @@
 package com.deloitte.twitterapp.controller;
 
 import com.deloitte.twitterapp.model.User;
-import com.deloitte.twitterapp.service.PostService;
 import com.deloitte.twitterapp.service.UserService;
-import com.deloitte.twitterapp.service.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,12 +14,10 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
-    private final PostService postService;
 
     @Autowired
-    public UserController(UserService userService, PostServiceImpl postService) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.postService = postService;
     }
 
     @GetMapping
@@ -42,7 +38,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public  String deleteUser(@PathVariable Long id){
+    public String deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return "Deleted Successfully";
     }
