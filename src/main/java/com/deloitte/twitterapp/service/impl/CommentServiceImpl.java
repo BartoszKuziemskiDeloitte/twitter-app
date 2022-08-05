@@ -45,4 +45,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment createComment(Comment comment) { return commentRepository.save(comment); }
 
+    @Override
+    public List<Comment> findAllByPostId(Long postId) {
+        return commentRepository.findAllByPostId(postId);
+    }
+
 }

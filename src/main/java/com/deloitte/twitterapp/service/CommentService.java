@@ -11,4 +11,6 @@ public interface CommentService {
     List<Comment> getComments();
 
     Comment createComment(Comment comment);
+
+    List<Comment> findAllByPostId(Long postId);
 }
