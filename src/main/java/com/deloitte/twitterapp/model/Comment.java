@@ -10,6 +10,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String content;
+    private Long numberOfLikes = 0L;
 
     @JsonIgnore
     @ManyToOne
@@ -58,5 +59,12 @@ public class Comment {
 
     public void setContent(String content) {
         this.content = content;
+    }
+    public Long getNumberOfLikes() {
+        return numberOfLikes;
+    }
+
+    public void setNumberOfLikes(Long numberOfLikes) {
+        this.numberOfLikes = numberOfLikes;
     }
 }
