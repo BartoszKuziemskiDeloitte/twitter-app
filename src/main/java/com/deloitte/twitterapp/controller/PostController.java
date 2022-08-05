@@ -25,14 +25,6 @@ public class PostController {
         this.userService = userService;
     }
 
-    @PostMapping("/users/{userId}")
-    public ResponseEntity<Post> createPost(@RequestBody final Post post, @PathVariable final Long userId) {
-        Post postToAdd = post;
-        User user = userService.getUser(userId);
-        postToAdd.setUser(user);
-        return new ResponseEntity<>(postService.createPost(post), HttpStatus.OK);
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Post> getPost(@PathVariable final Long id) {
         return new ResponseEntity<>(postService.getPost(id), HttpStatus.OK);
@@ -55,12 +47,23 @@ public class PostController {
         return new ResponseEntity<>(posts, HttpStatus.OK);
     }
 
-    @PutMapping("/{id}/user/{userId}")
-    public ResponseEntity<Post> addLike(@PathVariable final Long id, @PathVariable final Long userId) {
-        // TODO: 04.08.2022  
-        return null;
+    @PostMapping("/users/{userId}")
+    public ResponseEntity<Post> createPost(@RequestBody final Post post, @PathVariable final Long userId) {
+        Post postToAdd = post;
+        User user = userService.getUser(userId);
+        postToAdd.setUser(user);
+        return new ResponseEntity<>(postService.createPost(post), HttpStatus.OK);
     }
 
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<List<Post>> getAllUserPosts(@PathVariable final Long userId) {
+        return new ResponseEntity<>(postService.getAllUserPosts(userId), HttpStatus.OK);
+    }
 
+    @PutMapping("/{id}/user/{userId}")
+    public ResponseEntity<Post> addLike(@PathVariable final Long id, @PathVariable final Long userId) {
+        // TODO: 04.08.2022
+        return null;
+    }
 
 }

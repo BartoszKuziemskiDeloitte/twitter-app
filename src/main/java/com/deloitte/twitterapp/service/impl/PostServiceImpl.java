@@ -48,6 +48,11 @@ public class PostServiceImpl implements PostService {
         return postRepository.findAll();
     }
 
+    @Override
+    public List<Post> getAllUserPosts(Long userId) {
+        return postRepository.findAllByUser_Id(userId);
+    }
+
     // move to comment service
 //    public Comment addCommentToPost(Long postId, Long commentId) {
 //        Post post = postRepository.getReferenceById(postId);

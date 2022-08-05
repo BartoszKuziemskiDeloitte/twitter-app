@@ -10,4 +10,5 @@ public interface PostService {
     Post editPost(Post post, Long id);
     void deletePost(Long id);
     List<Post> getPosts();
+    List<Post> getAllUserPosts(Long userId);
 }
