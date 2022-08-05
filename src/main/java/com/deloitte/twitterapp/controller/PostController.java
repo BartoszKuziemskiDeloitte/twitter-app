@@ -49,9 +49,8 @@ public class PostController {
 
     @PostMapping("/users/{userId}")
     public ResponseEntity<Post> createPost(@RequestBody final Post post, @PathVariable final Long userId) {
-        Post postToAdd = post;
         User user = userService.getUser(userId);
-        postToAdd.setUser(user);
+        post.setUser(user);
         return new ResponseEntity<>(postService.createPost(post), HttpStatus.OK);
     }
 
