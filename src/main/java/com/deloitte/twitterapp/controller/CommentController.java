@@ -2,9 +2,11 @@ package com.deloitte.twitterapp.controller;
 
 import com.deloitte.twitterapp.model.Comment;
 import com.deloitte.twitterapp.model.Post;
+import com.deloitte.twitterapp.model.User;
 import com.deloitte.twitterapp.repository.CommentRepository;
 import com.deloitte.twitterapp.service.CommentService;
 import com.deloitte.twitterapp.service.PostService;
+import com.deloitte.twitterapp.service.UserService;
 import com.deloitte.twitterapp.service.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,22 +21,26 @@ import java.util.List;
 public class CommentController {
     private final CommentService commentService;
     private final PostService postService;
+    private final UserService userService;
 
     @Autowired
-    public CommentController(CommentService commentService, PostService postService) {
+    public CommentController(CommentService commentService, PostService postService, UserService userService) {
         this.commentService = commentService;
         this.postService = postService;
+        this.userService = userService;
     }
     @GetMapping
     public ResponseEntity<List<Comment>> getComments() {
         List<Comment> comments = commentService.getComments();
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
-    @PostMapping("/id")
-    public ResponseEntity<Comment> createComment(@RequestBody final Comment comment, @PathVariable final Long postId) {
+    @PostMapping("/{userId}/{id}")
+    public ResponseEntity<Comment> createComment(@RequestBody final Comment comment, @PathVariable final long userId, @PathVariable final Long id) {
         Comment addedComment = comment;
+        User postAuthorId = userService.getUser(userId);
         Post post = postService.getPost(id);
         addedComment.setPost(post);
+        addedComment.setUser(postAuthorId);
         return new ResponseEntity<>(commentService.createComment(addedComment), HttpStatus.OK);
     }
 
