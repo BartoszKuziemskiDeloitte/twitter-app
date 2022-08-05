@@ -1,30 +1,48 @@
 package com.deloitte.twitterapp.service.impl;
 
 import com.deloitte.twitterapp.model.Comment;
+import com.deloitte.twitterapp.model.Post;
 import com.deloitte.twitterapp.repository.CommentRepository;
+import com.deloitte.twitterapp.service.CommentService;
+import com.deloitte.twitterapp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CommentServiceImpl {
+public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
+    private final PostService postService;
 
     @Autowired
-    public CommentServiceImpl(CommentRepository commentRepository) {
+    public CommentServiceImpl(CommentRepository commentRepository, PostService postService) {
         this.commentRepository = commentRepository;
+        this.postService = postService;
+    }
+    @Override
+    public Comment getComment(Long id) {
+        return commentRepository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 
-    public Comment addComment(Comment comment) {
-        return commentRepository.save(comment);
+    @Override
+    public Comment editComment(Comment comment, Long commentId) {
+        Comment editedComment = getComment(commentId);
+        editedComment.setContent(comment.getContent());
+        return commentRepository.save(editedComment);
     }
 
-    public void deleteComment(Long id) {
-        commentRepository.deleteById(id);
+    @Override
+    public void deleteComment(Long commentId) {
+        commentRepository.deleteById(commentId);
     }
 
+    @Override
     public List<Comment> getComments() {
         return commentRepository.findAll();
     }
+
+    @Override
+    public Comment createComment(Comment comment) { return commentRepository.save(comment); }
+
 }

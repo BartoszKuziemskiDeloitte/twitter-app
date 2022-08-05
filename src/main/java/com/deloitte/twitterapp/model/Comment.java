@@ -1,5 +1,7 @@
 package com.deloitte.twitterapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +11,7 @@ public class Comment {
     private Long id;
     private String content;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
@@ -39,5 +42,21 @@ public class Comment {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

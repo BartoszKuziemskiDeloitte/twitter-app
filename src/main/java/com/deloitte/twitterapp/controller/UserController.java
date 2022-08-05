@@ -1,6 +1,7 @@
 package com.deloitte.twitterapp.controller;
 
 import com.deloitte.twitterapp.model.User;
+import com.deloitte.twitterapp.service.PostService;
 import com.deloitte.twitterapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +15,12 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final PostService postService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PostService postService) {
         this.userService = userService;
+        this.postService = postService;
     }
 
     @GetMapping
@@ -37,11 +40,20 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
-        return "Deleted Successfully";
-    }
 
+
+
+
+
+    /**
+     * nie usuwać, zapytać gdzie lepiej mieć metodę createPost
+     */
+//    @PostMapping("/{id}")
+//    public ResponseEntity<Post> createPost(@RequestBody final Post post, @PathVariable final Long id) {
+//        Post postToAdd = post;
+//        User user = userService.getUser(id);
+//        postToAdd.setUser(user);
+//        return new ResponseEntity<>(postService.addPost(postToAdd), HttpStatus.OK);
+//    }
 
 }
