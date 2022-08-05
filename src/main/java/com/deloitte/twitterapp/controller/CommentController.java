@@ -43,5 +43,16 @@ public class CommentController {
         addedComment.setUser(postAuthorId);
         return new ResponseEntity<>(commentService.createComment(addedComment), HttpStatus.OK);
     }
-
+    @PutMapping("/{id}")
+    public ResponseEntity<Comment> updateComment(@PathVariable final Long id, @RequestBody final Comment comment) {
+        Comment editedComment = commentService.getComment(id);
+        editedComment.setContent(comment.getContent());
+        return new ResponseEntity<>(commentService.editComment(editedComment), HttpStatus.OK);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteComment(@PathVariable final Long id) {
+        commentService.deleteComment(id);
+        return new ResponseEntity<>( "Comment deleted successfully", HttpStatus.OK);
+    }
 }
+
