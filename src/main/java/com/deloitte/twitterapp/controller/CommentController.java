@@ -3,17 +3,14 @@ package com.deloitte.twitterapp.controller;
 import com.deloitte.twitterapp.model.Comment;
 import com.deloitte.twitterapp.model.Post;
 import com.deloitte.twitterapp.model.User;
-import com.deloitte.twitterapp.repository.CommentRepository;
 import com.deloitte.twitterapp.service.CommentService;
 import com.deloitte.twitterapp.service.PostService;
 import com.deloitte.twitterapp.service.UserService;
-import com.deloitte.twitterapp.service.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

@@ -11,11 +11,15 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface SimpleMapper {
     UserDto userToUserDto(User user);
+
     User userDtoToUser(UserDto userDto);
-    List<UserDto> userListToUserDtoList (List<User> users);
+
+    List<UserDto> userListToUserDtoList(List<User> users);
 
     PostDto postToPostDto(Post post);
+
     Post postDtoToPost(PostDto postDto);
+
     List<PostDto> postListToPostDtoList(List<Post> posts);
 
 }

@@ -18,14 +18,7 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> comments;
 
-    public Post() {}
-
-    public void addComment(Comment comment) {
-
-    }
-
-    public void deleteComment(Comment comment) {
-
+    public Post() {
     }
 
     public Long getId() {

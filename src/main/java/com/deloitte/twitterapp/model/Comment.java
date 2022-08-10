@@ -27,7 +27,8 @@ public class Comment {
         this.user = user;
     }
 
-    public Comment() {}
+    public Comment() {
+    }
 
     public Post getPost() {
         return post;
@@ -60,6 +61,7 @@ public class Comment {
     public void setContent(String content) {
         this.content = content;
     }
+
     public Long getNumberOfLikes() {
         return numberOfLikes;
     }

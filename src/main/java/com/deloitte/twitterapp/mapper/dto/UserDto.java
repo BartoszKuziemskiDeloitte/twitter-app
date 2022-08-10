@@ -1,6 +1,5 @@
 package com.deloitte.twitterapp.mapper.dto;
 
-import com.deloitte.twitterapp.model.Post;
 import lombok.Getter;
 import lombok.Setter;
 

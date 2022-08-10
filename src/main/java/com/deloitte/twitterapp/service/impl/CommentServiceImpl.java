@@ -1,10 +1,8 @@
 package com.deloitte.twitterapp.service.impl;
 
 import com.deloitte.twitterapp.model.Comment;
-import com.deloitte.twitterapp.model.Post;
 import com.deloitte.twitterapp.repository.CommentRepository;
 import com.deloitte.twitterapp.service.CommentService;
-import com.deloitte.twitterapp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +11,10 @@ import java.util.List;
 @Service
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
-    private final PostService postService;
 
     @Autowired
-    public CommentServiceImpl(CommentRepository commentRepository, PostService postService) {
+    public CommentServiceImpl(CommentRepository commentRepository) {
         this.commentRepository = commentRepository;
-        this.postService = postService;
     }
     @Override
     public Comment getComment(Long id) {

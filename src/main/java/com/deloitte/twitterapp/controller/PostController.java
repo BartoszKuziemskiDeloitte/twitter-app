@@ -2,9 +2,7 @@ package com.deloitte.twitterapp.controller;
 
 import com.deloitte.twitterapp.mapper.dto.PostDto;
 import com.deloitte.twitterapp.model.Post;
-import com.deloitte.twitterapp.model.User;
 import com.deloitte.twitterapp.service.PostService;
-import com.deloitte.twitterapp.service.UserService;
 import com.deloitte.twitterapp.service.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

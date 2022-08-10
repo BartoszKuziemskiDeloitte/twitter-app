@@ -67,13 +67,4 @@ public class PostServiceImpl implements PostService {
         return simpleMapper.postListToPostDtoList(posts);
     }
 
-    // move to comment service
-//    public Comment addCommentToPost(Long postId, Long commentId) {
-//        Post post = postRepository.getReferenceById(postId);
-//        Comment comment = commentRepository.getReferenceById(commentId);
-//        post.addComment(comment);
-//        comment.setPost(post);
-//        return comment;
-//    }
-
 }
