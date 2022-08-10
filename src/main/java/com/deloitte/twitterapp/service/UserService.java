@@ -1,16 +1,19 @@
 package com.deloitte.twitterapp.service;
 
+import com.deloitte.twitterapp.mapper.dto.UserDto;
 import com.deloitte.twitterapp.model.User;
 
 import java.util.List;
 
 public interface UserService {
 
-    User addUser(User user);
+    User addUser(UserDto user);
 
     void deleteUser(Long id);
 
-    List<User> getUsers();
+    List<UserDto> getUsers();
+
+    UserDto getUserDto(Long id);
 
     User getUser(Long id);
 }

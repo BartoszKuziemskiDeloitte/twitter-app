@@ -1,5 +1,6 @@
 package com.deloitte.twitterapp.controller;
 
+import com.deloitte.twitterapp.mapper.dto.UserDto;
 import com.deloitte.twitterapp.model.User;
 import com.deloitte.twitterapp.service.PostService;
 import com.deloitte.twitterapp.service.UserService;
@@ -24,19 +25,19 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers() {
-        List<User> users = userService.getUsers();
+    public ResponseEntity<List<UserDto>> getUsers() {
+        List<UserDto> users = userService.getUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody final User user) {
+    public ResponseEntity<User> addUser(@RequestBody final UserDto user) {
         return new ResponseEntity<>(userService.addUser(user), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable final Long id) {
-        User user = userService.getUser(id);
+    public ResponseEntity<UserDto> getUser(@PathVariable final Long id) {
+        UserDto user = userService.getUserDto(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

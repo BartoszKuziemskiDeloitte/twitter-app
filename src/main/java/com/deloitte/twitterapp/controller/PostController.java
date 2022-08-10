@@ -1,5 +1,6 @@
 package com.deloitte.twitterapp.controller;
 
+import com.deloitte.twitterapp.mapper.dto.PostDto;
 import com.deloitte.twitterapp.model.Post;
 import com.deloitte.twitterapp.model.User;
 import com.deloitte.twitterapp.service.PostService;
@@ -17,17 +18,15 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
-    private final UserService userService;
 
     @Autowired
-    public PostController(PostServiceImpl postService, UserService userService) {
+    public PostController(PostServiceImpl postService) {
         this.postService = postService;
-        this.userService = userService;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPost(@PathVariable final Long id) {
-        return new ResponseEntity<>(postService.getPost(id), HttpStatus.OK);
+    public ResponseEntity<PostDto> getPost(@PathVariable final Long id) {
+        return new ResponseEntity<>(postService.getPostDto(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
@@ -48,21 +47,14 @@ public class PostController {
     }
 
     @PostMapping("/users/{userId}")
-    public ResponseEntity<Post> createPost(@RequestBody final Post post, @PathVariable final Long userId) {
-        User user = userService.getUser(userId);
-        post.setUser(user);
-        return new ResponseEntity<>(postService.createPost(post), HttpStatus.OK);
+    public ResponseEntity<Post> createPost(@RequestBody final PostDto post, @PathVariable final Long userId) {
+        return new ResponseEntity<>(postService.createPost(post, userId), HttpStatus.OK);
     }
 
     @GetMapping("/users/{userId}")
-    public ResponseEntity<List<Post>> getAllUserPosts(@PathVariable final Long userId) {
+    public ResponseEntity<List<PostDto>> getAllUserPosts(@PathVariable final Long userId) {
         return new ResponseEntity<>(postService.getAllUserPosts(userId), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}/user/{userId}")
-    public ResponseEntity<Post> addLike(@PathVariable final Long id, @PathVariable final Long userId) {
-        // TODO: 04.08.2022
-        return null;
-    }
 
 }

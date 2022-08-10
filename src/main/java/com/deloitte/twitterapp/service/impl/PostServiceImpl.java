@@ -1,5 +1,7 @@
 package com.deloitte.twitterapp.service.impl;
 
+import com.deloitte.twitterapp.mapper.SimpleMapper;
+import com.deloitte.twitterapp.mapper.dto.PostDto;
 import com.deloitte.twitterapp.model.Post;
 import com.deloitte.twitterapp.model.User;
 import com.deloitte.twitterapp.repository.PostRepository;
@@ -14,16 +16,27 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
     private final UserService userService;
+    private final SimpleMapper simpleMapper;
 
     @Autowired
-    public PostServiceImpl(PostRepository postRepository, UserService userService){
+    public PostServiceImpl(PostRepository postRepository, UserService userService, SimpleMapper simpleMapper){
         this.postRepository = postRepository;
         this.userService = userService;
+        this.simpleMapper = simpleMapper;
     }
 
     @Override
-    public Post createPost(Post post) {
+    public Post createPost(PostDto postDto, Long userId) {
+        User user = userService.getUser(userId);
+        Post post = simpleMapper.postDtoToPost(postDto);
+        post.setUser(user);
         return postRepository.save(post);
+    }
+
+    @Override
+    public PostDto getPostDto(Long id) {
+        Post post = postRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return simpleMapper.postToPostDto(post);
     }
 
     @Override
@@ -49,8 +62,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getAllUserPosts(Long userId) {
-        return postRepository.findAllByUser_Id(userId);
+    public List<PostDto> getAllUserPosts(Long userId) {
+        List<Post> posts = postRepository.findAllByUser_Id(userId);
+        return simpleMapper.postListToPostDtoList(posts);
     }
 
     // move to comment service
