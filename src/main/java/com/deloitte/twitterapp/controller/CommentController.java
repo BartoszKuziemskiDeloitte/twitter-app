@@ -52,6 +52,12 @@ public class CommentController {
         editedComment.setContent(comment.getContent());
         return new ResponseEntity<>(commentService.editComment(editedComment), HttpStatus.OK);
     }
+    @PostMapping("/{id}/like")
+    public ResponseEntity<Comment> giveLike(@PathVariable final long id) {
+        Comment editedComment = commentService.getComment(id);
+        editedComment.setNumberOfLikes(editedComment.getNumberOfLikes());
+        return new ResponseEntity<>(commentService.editComment(editedComment), HttpStatus.OK);
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteComment(@PathVariable final Long id) {
         commentService.deleteComment(id);

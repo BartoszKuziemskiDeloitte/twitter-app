@@ -15,6 +15,8 @@ public class Post {
 
     private String content;
 
+    private Long numberOfLikes = 0L;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> comments;
 
@@ -51,5 +53,12 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+    public Long getNumberOfLikes() {
+        return numberOfLikes;
+    }
+
+    public void setNumberOfLikes(Long numberOfLikes) {
+        this.numberOfLikes = numberOfLikes+1;
     }
 }

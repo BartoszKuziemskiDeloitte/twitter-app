@@ -1,6 +1,7 @@
 package com.deloitte.twitterapp.controller;
 
 import com.deloitte.twitterapp.mapper.dto.PostDto;
+import com.deloitte.twitterapp.model.Comment;
 import com.deloitte.twitterapp.model.Post;
 import com.deloitte.twitterapp.service.PostService;
 import com.deloitte.twitterapp.service.impl.PostServiceImpl;
@@ -36,6 +37,12 @@ public class PostController {
     public ResponseEntity<String> deletePost(@PathVariable final Long id) {
         postService.deletePost(id);
         return new ResponseEntity<>( "Post deleted successfully", HttpStatus.OK);
+    }
+    @PostMapping("/{id}/like")
+    public ResponseEntity<Post> giveLike(@PathVariable final long id) {
+        Post editedPost = postService.getPost(id);
+        editedPost.setNumberOfLikes(editedPost.getNumberOfLikes());
+        return new ResponseEntity<>(postService.editPost(editedPost, id), HttpStatus.OK);
     }
 
     @GetMapping

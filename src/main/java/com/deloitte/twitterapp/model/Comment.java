@@ -67,6 +67,6 @@ public class Comment {
     }
 
     public void setNumberOfLikes(Long numberOfLikes) {
-        this.numberOfLikes = numberOfLikes;
+        this.numberOfLikes = numberOfLikes+1;
     }
 }
